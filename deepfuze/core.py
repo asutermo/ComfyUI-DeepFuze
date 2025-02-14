@@ -219,9 +219,11 @@ def run(program : ArgumentParser) -> None:
 		force_download()
 		return
 	if not pre_check() or not content_analyser.pre_check() or not face_analyser.pre_check() or not face_masker.pre_check() or not voice_extractor.pre_check():
-		return
+		print("pre_check failed")
+		return -1
 	for frame_processor_module in get_frame_processors_modules(deepfuze.globals.frame_processors):
 		if not frame_processor_module.pre_check():
+			print("pre_check failed")
 			return
 	if deepfuze.globals.headless:
 		conditional_process()
@@ -230,6 +232,7 @@ def run(program : ArgumentParser) -> None:
 
 		for ui_layout in ui.get_ui_layouts_modules(deepfuze.globals.ui_layouts):
 			if not ui_layout.pre_check():
+				print("pre_check failed")
 				return
 		ui.launch()
 
@@ -298,7 +301,7 @@ def force_download() -> None:
 		face_masker.MODELS,
 		voice_extractor.MODELS
 	]
-	
+
 	for frame_processor_module in get_frame_processors_modules(available_frame_processors):
 		if hasattr(frame_processor_module, 'MODELS'):
 			model_list.append(frame_processor_module.MODELS)

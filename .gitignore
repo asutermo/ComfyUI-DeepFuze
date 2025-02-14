@@ -1,7 +1,5 @@
 .assets
 .idea
 .vscode
-__pycache__/
-deepfuze/processors/frame/__pycache__/
+**/__pycache__/
 
-*.pyc

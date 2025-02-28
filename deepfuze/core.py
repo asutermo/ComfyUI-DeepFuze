@@ -331,7 +331,7 @@ def process_image(start_time : float) -> None:
 		return
 	# process image
 	temp_file_path = get_temp_file_path(deepfuze.globals.target_path)
-	logger.info(f'temp_file_path: {temp_file_path}')
+	logger.info(f'temp_file_path: {temp_file_path}', __name__.upper())
 	for frame_processor_module in get_frame_processors_modules(deepfuze.globals.frame_processors):
 		logger.info(wording.get('processing'), frame_processor_module.NAME)
 		frame_processor_module.process_image(deepfuze.globals.source_paths, temp_file_path, temp_file_path)

@@ -331,6 +331,7 @@ def process_image(start_time : float) -> None:
 		return
 	# process image
 	temp_file_path = get_temp_file_path(deepfuze.globals.target_path)
+	logger.info(f'temp_file_path: {temp_file_path}')
 	for frame_processor_module in get_frame_processors_modules(deepfuze.globals.frame_processors):
 		logger.info(wording.get('processing'), frame_processor_module.NAME)
 		frame_processor_module.process_image(deepfuze.globals.source_paths, temp_file_path, temp_file_path)
@@ -344,7 +345,7 @@ def process_image(start_time : float) -> None:
 	else:
 		logger.warn(wording.get('finalizing_image_skipped'), __name__.upper())
 	# clear temp
-	logger.debug(wording.get('clearing_temp'), __name__.upper())
+	logger.info(wording.get('clearing_temp'), __name__.upper())
 	clear_temp(deepfuze.globals.target_path)
 	# validate image
 	if is_image(normed_output_path):
